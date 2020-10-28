@@ -2,6 +2,7 @@
 
 html {
 	box-sizing: border-box;
+	font-family: $font-roboto;
 	font-size: 100%; // 16px
 
 	@media #{$desktop-small} {
