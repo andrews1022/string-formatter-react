@@ -1,9 +1,5 @@
 import React from 'react';
 
-const Heading = (props) => <h1>{props.text}</h1>;
-
-Heading.defaultProps = {
-	text: 'String Formatter'
-};
+const Heading = ({ text }) => <h1 className='heading'>{text}</h1>;
 
 export default Heading;

@@ -1,9 +1,16 @@
 import React from 'react';
-import StringFormatter from './StringFormatter';
+import Heading from './components/Heading';
+import StringFormatter from './components/StringFormatter';
+
 import './scss/app.min.css';
 
 const App = () => {
-	return <StringFormatter />;
+	return (
+		<div className='wrapper'>
+			<Heading text='String Formatter' />
+			<StringFormatter />
+		</div>
+	);
 };
 
 export default App;
