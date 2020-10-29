@@ -101,6 +101,7 @@ const StringFormatter = () => {
 						id='output'
 						ref={outputRef}
 						value={output}
+						readOnly={true}
 					></textarea>
 					<button className='formatter__button'>Copy</button>
 				</div>
