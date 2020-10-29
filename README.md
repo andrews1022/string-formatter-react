@@ -4,12 +4,12 @@ A simple string formatting app I came up with to practice building with React, s
 
 ## Steps
 
-[ x ] Setup basic file/folders structure
-[ x ] Setup remote repo on GitHub
-[ x ] Setup continuous deployment on Netlify
-[ x ] Add basic styles
-[ x ] Set output textarea value same as input textarea value
-[ ] Keep track of how many checkboxes are checked (allow only 1 to be checked at a time)
+[ x ] Setup basic file/folders structure <br />
+[ x ] Setup remote repo on GitHub <br />
+[ x ] Setup continuous deployment on Netlify <br />
+[ x ] Add basic styles <br />
+[ x ] Set output textarea value same as input textarea value <br />
+[ ] Keep track of how many checkboxes are checked (allow only 1 to be checked at a time) <br />
 [ ] Add logic to "Format" button:
 
 - On click, get input value (if any, display message if empty)
@@ -17,8 +17,8 @@ A simple string formatting app I came up with to practice building with React, s
 - Apply formatting logic based on checked checkbox
 - Display in output box
 
-[ ] Add logic to copy output textarea to clipboard
-[ ] Set button text to copied for a few seconds once clicked
+[ ] Add logic to copy output textarea to clipboard <br />
+[ ] Set button text to copied for a few seconds once clicked <br />
 
 ## Things I Learned
 
