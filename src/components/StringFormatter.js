@@ -2,6 +2,7 @@ import React, { useState, useRef } from 'react';
 
 const StringFormatter = () => {
 	const [output, setOutput] = useState('');
+	const [checkLimit, setCheckLimit] = useState(() => ({ currentData: 0, limit: 1 }));
 
 	const inputRef = useRef(null);
 	const outputRef = useRef(null);
@@ -19,11 +20,32 @@ const StringFormatter = () => {
 	//   setOutput(output.current.value)
 	// };
 
+	// mirror text from input field to output field
 	const mirrorText = (e) => {
 		e.preventDefault();
 
 		const inputValue = inputRef.current.value;
 		outputRef.current.value = setOutput(inputValue);
+	};
+
+	const selectCheck = (e) => {
+		let isSelected = e.target.checked;
+
+		if (isSelected) {
+			if (checkLimit.currentData < checkLimit.limit) {
+				setCheckLimit((prevState) => ({ ...prevState, currentData: prevState.currentData + 1 }));
+			} else {
+				e.preventDefault();
+				e.target.checked = false;
+			}
+		} else {
+			setCheckLimit((prevState) => ({ ...prevState, currentData: prevState.currentData - 1 }));
+		}
+	};
+
+	const currentCheck = (e) => {
+		// console.log(e.target);
+		// console.log(e.target.checked);
 	};
 
 	return (
@@ -49,6 +71,8 @@ const StringFormatter = () => {
 							type='checkbox'
 							name='format-lowercase'
 							id='format-lowercase'
+							onChange={selectCheck}
+							onClick={currentCheck}
 						/>
 						<label className='formatter__check-label' htmlFor='format-lowercase'>
 							all lowercase
@@ -60,6 +84,8 @@ const StringFormatter = () => {
 							type='checkbox'
 							name='format-uppercase'
 							id='format-uppercase'
+							onChange={selectCheck}
+							onClick={currentCheck}
 						/>
 						<label className='formatter__check-label' htmlFor='format-uppercase'>
 							ALL UPPERCASE
@@ -71,6 +97,8 @@ const StringFormatter = () => {
 							type='checkbox'
 							name='format-web'
 							id='format-web-ready'
+							onChange={selectCheck}
+							onClick={currentCheck}
 						/>
 						<label className='formatter__check-label' htmlFor='format-web'>
 							web-ready
@@ -82,6 +110,8 @@ const StringFormatter = () => {
 							type='checkbox'
 							name='format-people-fucking-dying'
 							id='format-people-fucking-dying'
+							onChange={selectCheck}
+							onClick={currentCheck}
 						/>
 						<label className='formatter__check-label' htmlFor='format-people-fucking-dying'>
 							PeOPleFucKInGDyINg
