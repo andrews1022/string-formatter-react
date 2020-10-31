@@ -14,10 +14,10 @@ A simple string formatting app I came up with to practice building with React, s
 ### Formatting
 
 - [x] Set output textarea value same as input textarea value <br />
-- [x] Format text to lowercase
-- [x] Format text to UPPERCASE
-      [ ] Format text to web-ready
-      [ ] Format text to PeOPleFucKInGDyINg
+- [x] Format text to lowercase <br />
+- [x] Format text to UPPERCASE <br />
+- [x] Format text to web-ready <br />
+- [x] Format text to PeOPleFucKInGDyINg <br />
 
 ### State
 
@@ -38,8 +38,8 @@ A simple string formatting app I came up with to practice building with React, s
 
 ### Handling Errors
 
-[ ] Add useState call for error message (and setting it)
-[ ] Display error message if not text entered, and/or no textbox selected
+- [x] Add useState call for error message (and setting it) <br />
+- [x] Display error message if not text entered, and/or no textbox selected <br />
 
 ## Things I Learned
 

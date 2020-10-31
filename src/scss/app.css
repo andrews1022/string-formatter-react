@@ -153,6 +153,11 @@ video {
   }
 }
 
+.formatter__error {
+  color: red;
+  margin-top: 3.5%;
+}
+
 .heading {
   font-size: 2rem;
   text-align: center;

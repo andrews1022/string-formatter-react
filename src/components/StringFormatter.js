@@ -1,35 +1,41 @@
 import React, { useState, useRef } from 'react';
+import Checkbox from './Checkbox';
 
 const StringFormatter = () => {
 	const [output, setOutput] = useState('');
 	const [checkedBox, setCheckedBox] = useState([]);
+	const [errorMessage, setErrorMessage] = useState('');
 
 	const inputRef = useRef(null);
 	const outputRef = useRef(null);
 
 	// get value from input text area
-	// const getInputValue = (e) => {
-	// 	e.preventDefault();
-	// 	return inputRef.current.value;
-	// };
-
-	// get clicked on checkbox (regardless of state)
-	// const currentCheck = (e) => {
-	// console.log(e.target);
-	// console.log(e.target.checked);
-	// };
+	const getInputValue = (e) => {
+		e.preventDefault();
+		return inputRef.current.value.trim();
+	};
 
 	// convert text to lowercase
-	// const formatTextLowerCase = (text) => text.toLowerCase();
+	const formatTextLowerCase = (text) => text.toLowerCase();
 
 	// convert text to lowercase
-	// const formatTextUpperCase = (text) => text.toUpperCase();
+	const formatTextUpperCase = (text) => text.toUpperCase();
 
 	// convert text to "web-ready"
-	// const formatTextWebReady = (text) => {};
+	const formatTextWebReady = (text) => {
+		return text
+			.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>{}[\]\\/]/g, '')
+			.replace(/\s+/g, '-')
+			.toLowerCase();
+	};
 
 	// convert text to "PeOPleFucKInGDyINg"
-	// const formatTextPeopleFuckingDying = (text) => {}
+	const formatTextPeopleFuckingDying = (text) => {
+		return text
+			.split('')
+			.map((v) => (Math.round(Math.random()) ? v.toUpperCase() : v.toLowerCase()))
+			.join('');
+	};
 
 	// limit number of checkboxes checked
 	const selectCheck = (e) => {
@@ -50,12 +56,37 @@ const StringFormatter = () => {
 		}
 	};
 
+	const displayErrorMessage = (message, duration) => {
+		setErrorMessage(message);
+		setTimeout(() => setErrorMessage(''), duration);
+	};
+
 	// mirror text from input field to output field
 	const mirrorText = (e) => {
 		e.preventDefault();
 
-		const inputValue = inputRef.current.value;
-		outputRef.current.value = setOutput(inputValue);
+		// get input value
+		// check if input value exists
+		// if not, display error message
+
+		const inputValue = getInputValue(e);
+
+		if (!inputValue || checkedBox.length === 0) {
+			displayErrorMessage('Please enter a value and/or select a box', 2250);
+		} else {
+			// if both valid, get function from formattingFn prop
+			// use that function to format input value
+			// set output value to that formatted value
+
+			console.log(checkedBox);
+			console.log(checkedBox.formattingFn);
+			console.dir(checkedBox);
+		}
+
+		// const inputValue = inputRef.current.value;
+		// const formattedText = formatTextWebReady(inputValue);
+		// outputRef.current.value = setOutput(formattedText);
+		// console.log(checkedBox);
 	};
 
 	return (
@@ -75,55 +106,30 @@ const StringFormatter = () => {
 				</div>
 				<div className='formatter__box'>
 					<span className='formatter__label'>Options (Pick 1)</span>
-					<div className='formatter__group'>
-						<input
-							className='formatter__check'
-							type='checkbox'
-							name='format-lowercase'
-							id='format-lowercase'
-							onChange={selectCheck}
-						/>
-						<label className='formatter__check-label' htmlFor='format-lowercase'>
-							all lowercase
-						</label>
-					</div>
-					<div className='formatter__group'>
-						<input
-							className='formatter__check'
-							type='checkbox'
-							name='format-uppercase'
-							id='format-uppercase'
-							onChange={selectCheck}
-						/>
-						<label className='formatter__check-label' htmlFor='format-uppercase'>
-							ALL UPPERCASE
-						</label>
-					</div>
-					<div className='formatter__group'>
-						<input
-							className='formatter__check'
-							type='checkbox'
-							name='format-web'
-							id='format-web-ready'
-							onChange={selectCheck}
-						/>
-						<label className='formatter__check-label' htmlFor='format-web'>
-							web-ready
-						</label>
-					</div>
-					<div className='formatter__group'>
-						<input
-							className='formatter__check'
-							type='checkbox'
-							name='format-people-fucking-dying'
-							id='format-people-fucking-dying'
-							onChange={selectCheck}
-						/>
-						<label className='formatter__check-label' htmlFor='format-people-fucking-dying'>
-							PeOPleFucKInGDyINg
-						</label>
-					</div>
-					<div className='formatter__group'></div>
+					<Checkbox
+						onChangeFn={selectCheck}
+						identifier='format-lowercase'
+						labelText='all lowercase'
+						formattingFn={formatTextLowerCase}
+					/>
+					<Checkbox
+						onChangeFn={selectCheck}
+						identifier='format-uppercase'
+						labelText='ALL UPPERCASE'
+						formattingFn={formatTextUpperCase}
+					/>
+					<Checkbox
+						onChangeFn={selectCheck}
+						identifier='format-web-ready'
+						labelText='web-ready'
+						formattingFn={formatTextWebReady}
+					/>
+					<Checkbox
+						onChangeFn={selectCheck}
+						identifier='format-people-fucking-dying'
+						labelText='PeOPleFucKInGDyINg'
+						formattingFn={formatTextPeopleFuckingDying}
+					/>
 				</div>
 			</div>
 			<div className='formatter__row'>
@@ -142,6 +148,7 @@ const StringFormatter = () => {
 					<button className='formatter__button'>Copy</button>
 				</div>
 			</div>
+			{errorMessage && <p className='formatter__error'>{errorMessage}</p>}
 		</form>
 	);
 };
