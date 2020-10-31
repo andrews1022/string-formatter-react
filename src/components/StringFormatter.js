@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 
 const StringFormatter = () => {
 	const [output, setOutput] = useState('');
-	const [checkLimit, setCheckLimit] = useState(() => ({ currentData: 0, limit: 1 }));
+	const [checkedBox, setCheckedBox] = useState([]);
 
 	const inputRef = useRef(null);
 	const outputRef = useRef(null);
@@ -13,12 +13,42 @@ const StringFormatter = () => {
 	// 	return inputRef.current.value;
 	// };
 
-	// set output value in output text area
-	// const setOutputValue = (e) => {
-	// 	e.preventDefault();
-	//   const inputValue = getInputValue(e);
-	//   setOutput(output.current.value)
+	// get clicked on checkbox (regardless of state)
+	// const currentCheck = (e) => {
+	// console.log(e.target);
+	// console.log(e.target.checked);
 	// };
+
+	// convert text to lowercase
+	// const formatTextLowerCase = (text) => text.toLowerCase();
+
+	// convert text to lowercase
+	// const formatTextUpperCase = (text) => text.toUpperCase();
+
+	// convert text to "web-ready"
+	// const formatTextWebReady = (text) => {};
+
+	// convert text to "PeOPleFucKInGDyINg"
+	// const formatTextPeopleFuckingDying = (text) => {}
+
+	// limit number of checkboxes checked
+	const selectCheck = (e) => {
+		const selectedCheckbox = e.target;
+		const selectedCheckboxIsChecked = selectedCheckbox.checked;
+		const limit = 1;
+
+		if (selectedCheckboxIsChecked) {
+			if (checkedBox.length < limit) {
+				setCheckedBox((currentState) => [...currentState, selectedCheckbox]);
+			} else {
+				e.preventDefault();
+				e.target.checked = false;
+			}
+		} else {
+			// reset to initial state
+			setCheckedBox(() => []);
+		}
+	};
 
 	// mirror text from input field to output field
 	const mirrorText = (e) => {
@@ -26,26 +56,6 @@ const StringFormatter = () => {
 
 		const inputValue = inputRef.current.value;
 		outputRef.current.value = setOutput(inputValue);
-	};
-
-	const selectCheck = (e) => {
-		let isSelected = e.target.checked;
-
-		if (isSelected) {
-			if (checkLimit.currentData < checkLimit.limit) {
-				setCheckLimit((prevState) => ({ ...prevState, currentData: prevState.currentData + 1 }));
-			} else {
-				e.preventDefault();
-				e.target.checked = false;
-			}
-		} else {
-			setCheckLimit((prevState) => ({ ...prevState, currentData: prevState.currentData - 1 }));
-		}
-	};
-
-	const currentCheck = (e) => {
-		// console.log(e.target);
-		// console.log(e.target.checked);
 	};
 
 	return (
@@ -56,7 +66,7 @@ const StringFormatter = () => {
 						Input
 					</label>
 					<textarea
-						className='formatter__textarea formatter__textarea--input'
+						className='formatter__textarea'
 						name='input'
 						id='input'
 						ref={inputRef}
@@ -72,7 +82,6 @@ const StringFormatter = () => {
 							name='format-lowercase'
 							id='format-lowercase'
 							onChange={selectCheck}
-							onClick={currentCheck}
 						/>
 						<label className='formatter__check-label' htmlFor='format-lowercase'>
 							all lowercase
@@ -85,7 +94,6 @@ const StringFormatter = () => {
 							name='format-uppercase'
 							id='format-uppercase'
 							onChange={selectCheck}
-							onClick={currentCheck}
 						/>
 						<label className='formatter__check-label' htmlFor='format-uppercase'>
 							ALL UPPERCASE
@@ -98,7 +106,6 @@ const StringFormatter = () => {
 							name='format-web'
 							id='format-web-ready'
 							onChange={selectCheck}
-							onClick={currentCheck}
 						/>
 						<label className='formatter__check-label' htmlFor='format-web'>
 							web-ready
@@ -111,7 +118,6 @@ const StringFormatter = () => {
 							name='format-people-fucking-dying'
 							id='format-people-fucking-dying'
 							onChange={selectCheck}
-							onClick={currentCheck}
 						/>
 						<label className='formatter__check-label' htmlFor='format-people-fucking-dying'>
 							PeOPleFucKInGDyINg
@@ -126,7 +132,7 @@ const StringFormatter = () => {
 						Output
 					</label>
 					<textarea
-						className='formatter__textarea formatter__textarea--output'
+						className='formatter__textarea'
 						name='output'
 						id='output'
 						ref={outputRef}

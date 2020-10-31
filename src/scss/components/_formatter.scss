@@ -1,4 +1,6 @@
 .formatter {
+	color: $blueWhale;
+
 	&__row {
 		display: flex;
 		align-items: flex-start;
@@ -28,16 +30,9 @@
 	}
 
 	&__textarea {
-		height: 6rem;
-		width: 20rem;
-		resize: none;
+		@include size(6rem, 20rem);
 		padding: 0.5rem;
-
-		&--input {
-		}
-
-		&--output {
-		}
+		resize: none;
 	}
 
 	&__group {
@@ -58,5 +53,14 @@
 		cursor: pointer;
 		display: block;
 		padding: 0.5rem 2.5rem;
+		transition: all 175ms ease-in-out;
+
+		@media (hover) {
+			&:hover,
+			&:active,
+			&:focus {
+				background-color: lighten($blueWhale, 7.5%);
+			}
+		}
 	}
 }
