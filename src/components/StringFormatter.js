@@ -1,10 +1,17 @@
 import React, { useState, useRef } from 'react';
 import Checkbox from './Checkbox';
+import {
+	formatTextLowerCase,
+	formatTextUpperCase,
+	formatTextWebReady,
+	formatTextPeopleFuckingDying
+} from './../functions/FormattingFunctions';
 
 const StringFormatter = () => {
 	const [output, setOutput] = useState('');
 	const [checkedBox, setCheckedBox] = useState([]);
 	const [errorMessage, setErrorMessage] = useState('');
+	const [copy, setCopy] = useState('Copy');
 
 	const inputRef = useRef(null);
 	const outputRef = useRef(null);
@@ -13,28 +20,6 @@ const StringFormatter = () => {
 	const getInputValue = (e) => {
 		e.preventDefault();
 		return inputRef.current.value.trim();
-	};
-
-	// convert text to lowercase
-	const formatTextLowerCase = (text) => text.toLowerCase();
-
-	// convert text to lowercase
-	const formatTextUpperCase = (text) => text.toUpperCase();
-
-	// convert text to "web-ready"
-	const formatTextWebReady = (text) => {
-		return text
-			.replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>{}[\]\\/]/g, '')
-			.replace(/\s+/g, '-')
-			.toLowerCase();
-	};
-
-	// convert text to "PeOPleFucKInGDyINg"
-	const formatTextPeopleFuckingDying = (text) => {
-		return text
-			.split('')
-			.map((v) => (Math.round(Math.random()) ? v.toUpperCase() : v.toLowerCase()))
-			.join('');
 	};
 
 	// limit number of checkboxes checked
@@ -65,28 +50,48 @@ const StringFormatter = () => {
 	const mirrorText = (e) => {
 		e.preventDefault();
 
-		// get input value
-		// check if input value exists
-		// if not, display error message
-
 		const inputValue = getInputValue(e);
 
 		if (!inputValue || checkedBox.length === 0) {
 			displayErrorMessage('Please enter a value and/or select a box', 2250);
 		} else {
-			// if both valid, get function from formattingFn prop
-			// use that function to format input value
-			// set output value to that formatted value
+			switch (checkedBox[0].id) {
+				case 'format-lowercase':
+					outputRef.current.value = setOutput(formatTextLowerCase(inputValue));
+					break;
 
-			console.log(checkedBox);
-			console.log(checkedBox.formattingFn);
-			console.dir(checkedBox);
+				case 'format-uppercase':
+					outputRef.current.value = setOutput(formatTextUpperCase(inputValue));
+					break;
+
+				case 'format-web-ready':
+					outputRef.current.value = setOutput(formatTextWebReady(inputValue));
+					break;
+
+				case 'format-people-fucking-dying':
+					outputRef.current.value = setOutput(formatTextPeopleFuckingDying(inputValue));
+					break;
+
+				default:
+					break;
+			}
 		}
+	};
 
-		// const inputValue = inputRef.current.value;
-		// const formattedText = formatTextWebReady(inputValue);
-		// outputRef.current.value = setOutput(formattedText);
-		// console.log(checkedBox);
+	const copyOutputToClipboard = (e) => {
+		if (navigator.clipboard) {
+			e.preventDefault();
+
+			const textToCopy = outputRef.current.value;
+
+			try {
+				navigator.clipboard.writeText(textToCopy);
+				setCopy('Copied!');
+				setTimeout(() => setCopy('Copy'), 1500);
+			} catch (error) {
+				console.log('oops!', error);
+			}
+		}
 	};
 
 	return (
@@ -138,14 +143,16 @@ const StringFormatter = () => {
 						Output
 					</label>
 					<textarea
-						className='formatter__textarea'
+						className='formatter__textarea formatter__textarea--output'
 						name='output'
 						id='output'
 						ref={outputRef}
 						value={output}
 						readOnly={true}
 					></textarea>
-					<button className='formatter__button'>Copy</button>
+					<button className='formatter__button' onClick={copyOutputToClipboard}>
+						{copy}
+					</button>
 				</div>
 			</div>
 			{errorMessage && <p className='formatter__error'>{errorMessage}</p>}

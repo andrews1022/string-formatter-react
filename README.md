@@ -26,15 +26,15 @@ A simple string formatting app I came up with to practice building with React, s
 
 ### Mirroring Text
 
-[ ] On click, get input value (if any, display message if empty) <br />
-[ ] Check which checkbox is checked (if any, display message if none are checked) <br />
-[ ] Apply formatting logic based on checked checkbox (check which element is in checked state array) <br />
-[ ] Display in output box <br />
+- [x] On click, get input value (if any, display message if empty) <br />
+- [x] Check which checkbox is checked (if any, display message if none are checked) <br />
+- [x] Apply formatting logic based on checked checkbox (check which element is in checked state array) <br />
+- [x] Display in output box <br />
 
 ### Output Textarea
 
-[ ] Add logic to copy output textarea to clipboard <br />
-[ ] Set button text to copied for a few seconds once clicked <br />
+- [x] Add logic to copy output textarea to clipboard <br />
+- [x] Set button text to copied for a few seconds once clicked <br />
 
 ### Handling Errors
 

@@ -33,6 +33,15 @@
 		@include size(6rem, 20rem);
 		padding: 0.5rem;
 		resize: none;
+
+		&--output {
+			user-select: none;
+
+			&:focus {
+				outline: none;
+				user-select: none;
+			}
+		}
 	}
 
 	&__group {

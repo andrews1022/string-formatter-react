@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Checkbox = ({ onChangeFn, identifier, labelText, formattingFn }) => {
+const Checkbox = ({ onChangeFn, identifier, labelText }) => {
 	return (
 		<div className='formatter__group'>
 			<input

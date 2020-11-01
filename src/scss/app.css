@@ -129,6 +129,15 @@ video {
   resize: none;
 }
 
+.formatter__textarea--output {
+  user-select: none;
+}
+
+.formatter__textarea--output:focus {
+  outline: none;
+  user-select: none;
+}
+
 .formatter__check {
   margin-right: 0.5rem;
 }
@@ -193,6 +202,5 @@ video {
 .wrapper {
   background-color: #eee;
   padding: 2rem 3rem;
-  width: 35vw;
 }
 /*# sourceMappingURL=app.css.map */
