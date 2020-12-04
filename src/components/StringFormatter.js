@@ -8,6 +8,7 @@ import {
 } from './../functions/FormattingFunctions';
 
 const StringFormatter = () => {
+	// const [input, setInput] = useState('');
 	const [output, setOutput] = useState('');
 	const [checkedBox, setCheckedBox] = useState([]);
 	const [errorMessage, setErrorMessage] = useState('');
