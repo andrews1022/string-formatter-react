@@ -1,21 +1,17 @@
 .formatter {
+	display: flex;
+	align-items: flex-start;
 	color: $blueWhale;
 
 	&__row {
 		display: flex;
-		align-items: flex-start;
-
-		&:first-of-type {
-			margin-bottom: 2rem;
-		}
-
-		&:last-of-type {
-		}
+		flex-direction: column;
 	}
 
 	&__box {
 		&:first-of-type {
-			margin-right: 3rem;
+			margin-right: 2rem;
+			margin-bottom: 10%;
 		}
 
 		&:last-of-type {

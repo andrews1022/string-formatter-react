@@ -1,8 +1,12 @@
 // convert text to lowercase
-export const formatTextLowerCase = (text) => text.toLowerCase();
+export const formatTextLowerCase = (text) => {
+	return text.toLowerCase();
+};
 
 // convert text to lowercase
-export const formatTextUpperCase = (text) => text.toUpperCase();
+export const formatTextUpperCase = (text) => {
+	return text.toUpperCase();
+};
 
 // convert text to "web-ready"
 export const formatTextWebReady = (text) => {

@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { usePrevious } from './../functions/CustomHooks';
 import Checkbox from './Checkbox';
 import {
 	formatTextLowerCase,
@@ -8,19 +9,23 @@ import {
 } from './../functions/FormattingFunctions';
 
 const StringFormatter = () => {
-	// const [input, setInput] = useState('');
+	// state
+	const [input, setInput] = useState('');
 	const [output, setOutput] = useState('');
 	const [checkedBox, setCheckedBox] = useState([]);
 	const [errorMessage, setErrorMessage] = useState('');
 	const [copy, setCopy] = useState('Copy');
 
+	// get previous output
+	const previousInput = usePrevious(input);
+
+	// refs
 	const inputRef = useRef(null);
 	const outputRef = useRef(null);
 
-	// get value from input text area
-	const getInputValue = (e) => {
-		e.preventDefault();
-		return inputRef.current.value.trim();
+	// add what's being typed to input state
+	const trackInput = () => {
+		setInput(inputRef.current.value);
 	};
 
 	// limit number of checkboxes checked
@@ -42,6 +47,7 @@ const StringFormatter = () => {
 		}
 	};
 
+	// display error message
 	const displayErrorMessage = (message, duration) => {
 		setErrorMessage(message);
 		setTimeout(() => setErrorMessage(''), duration);
@@ -51,26 +57,24 @@ const StringFormatter = () => {
 	const mirrorText = (e) => {
 		e.preventDefault();
 
-		const inputValue = getInputValue(e);
-
-		if (!inputValue || checkedBox.length === 0) {
+		if (!input || checkedBox.length === 0) {
 			displayErrorMessage('Please enter a value and/or select a box', 2250);
 		} else {
 			switch (checkedBox[0].id) {
 				case 'format-lowercase':
-					outputRef.current.value = setOutput(formatTextLowerCase(inputValue));
+					outputRef.current.value = setOutput(formatTextLowerCase(input));
 					break;
 
 				case 'format-uppercase':
-					outputRef.current.value = setOutput(formatTextUpperCase(inputValue));
+					outputRef.current.value = setOutput(formatTextUpperCase(input));
 					break;
 
 				case 'format-web-ready':
-					outputRef.current.value = setOutput(formatTextWebReady(inputValue));
+					outputRef.current.value = setOutput(formatTextWebReady(input));
 					break;
 
 				case 'format-people-fucking-dying':
-					outputRef.current.value = setOutput(formatTextPeopleFuckingDying(inputValue));
+					outputRef.current.value = setOutput(formatTextPeopleFuckingDying(input));
 					break;
 
 				default:
@@ -79,6 +83,7 @@ const StringFormatter = () => {
 		}
 	};
 
+	// copy text in output field to clipboard
 	const copyOutputToClipboard = (e) => {
 		if (navigator.clipboard) {
 			e.preventDefault();
@@ -107,9 +112,31 @@ const StringFormatter = () => {
 						name='input'
 						id='input'
 						ref={inputRef}
+						onChange={trackInput}
 					></textarea>
 					<input className='formatter__button' type='submit' value='Format' onClick={mirrorText} />
 				</div>
+				<div className='formatter__box'>
+					<label className='formatter__label' htmlFor='output'>
+						Output
+					</label>
+					<textarea
+						className='formatter__textarea formatter__textarea--output'
+						name='output'
+						id='output'
+						ref={outputRef}
+						value={output}
+						readOnly={true}
+					></textarea>
+					<button className='formatter__button' onClick={copyOutputToClipboard}>
+						{copy}
+					</button>
+				</div>
+				<p>Input: {input}</p>
+				<p>Previous Input: {previousInput}</p>
+				<p>Output: {output}</p>
+			</div>
+			<div className='formatter__row'>
 				<div className='formatter__box'>
 					<span className='formatter__label'>Options (Pick 1)</span>
 					<Checkbox
@@ -136,24 +163,6 @@ const StringFormatter = () => {
 						labelText='PeOPleFucKInGDyINg'
 						formattingFn={formatTextPeopleFuckingDying}
 					/>
-				</div>
-			</div>
-			<div className='formatter__row'>
-				<div className='formatter__box'>
-					<label className='formatter__label' htmlFor='output'>
-						Output
-					</label>
-					<textarea
-						className='formatter__textarea formatter__textarea--output'
-						name='output'
-						id='output'
-						ref={outputRef}
-						value={output}
-						readOnly={true}
-					></textarea>
-					<button className='formatter__button' onClick={copyOutputToClipboard}>
-						{copy}
-					</button>
 				</div>
 			</div>
 			{errorMessage && <p className='formatter__error'>{errorMessage}</p>}
