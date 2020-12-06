@@ -104,6 +104,12 @@ video {
   color: #203a43;
 }
 
+@media only screen and (max-width: 768px) {
+  .formatter {
+    flex-direction: column-reverse;
+  }
+}
+
 .formatter__row {
   display: flex;
   flex-direction: column;
@@ -162,7 +168,7 @@ video {
 }
 
 .formatter__error {
-  color: red;
+  color: #ff0000;
   margin-top: 3.5%;
 }
 

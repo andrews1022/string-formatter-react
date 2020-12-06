@@ -3,6 +3,10 @@
 	align-items: flex-start;
 	color: $blueWhale;
 
+	@media #{$tablet-portrait} {
+		flex-direction: column-reverse;
+	}
+
 	&__row {
 		display: flex;
 		flex-direction: column;
@@ -14,8 +18,8 @@
 			margin-bottom: 10%;
 		}
 
-		&:last-of-type {
-		}
+		// &:last-of-type {
+		// }
 	}
 
 	&__label {
@@ -40,8 +44,8 @@
 		}
 	}
 
-	&__group {
-	}
+	// &__group {
+	// }
 
 	&__check {
 		margin-right: 0.5rem;
@@ -70,7 +74,7 @@
 	}
 
 	&__error {
-		color: red;
+		color: #ff0000;
 		margin-top: 3.5%;
 	}
 }

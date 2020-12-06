@@ -23,3 +23,8 @@ export const formatTextPeopleFuckingDying = (text) => {
 		.map((v) => (Math.round(Math.random()) ? v.toUpperCase() : v.toLowerCase()))
 		.join('');
 };
+
+// conver text to sentence case
+export const formatTextSentenceCase = (text) => {
+	return text.toLowerCase().replace(/(^\s*\w|[.!?]\s*\w)/g, (c) => c.toUpperCase());
+};
