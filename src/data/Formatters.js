@@ -1,22 +1,22 @@
 export const formatters = [
 	{
-		id: 'format-lowercase',
+		id: 'format_lowercase',
 		label: 'lowercase'
 	},
 	{
-		id: 'format-uppercase',
+		id: 'format_uppercase',
 		label: 'uppercase'
 	},
 	{
-		id: 'format-web-ready',
-		label: 'web-ready'
+		id: 'format_web_ready',
+		label: 'web_ready'
 	},
 	{
-		id: 'format-people-fucking-dying',
+		id: 'format_people_fucking_dying',
 		label: 'PeOPleFucKInGDyINg'
 	},
 	{
-		id: 'format-sentence-case',
+		id: 'format_sentence_case',
 		label: 'Sentence case'
 	}
 ];

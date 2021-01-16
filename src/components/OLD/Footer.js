@@ -9,7 +9,7 @@ const Footer = () => {
 	return (
 		<footer className='footer'>
 			<p className='footer__text'>
-				© {new Date().getFullYear()} All rights reserved. Designed and built and Andrew Shearer.
+				© {new Date().getFullYear()} all rights reserved. designed and built and andrew shearer
 			</p>
 			<div className='footer__icon-row'>
 				<a

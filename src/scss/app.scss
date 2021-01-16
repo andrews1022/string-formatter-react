@@ -1,10 +1,7 @@
-@import 'abstract/mixins';
 @import 'abstract/variables';
 
 @import 'base/resets';
 
+@import 'components/footer';
 @import 'components/formatter';
-@import 'components/heading';
-
-@import 'layout/footer';
-@import 'layout/wrapper';
+@import 'components/header';
