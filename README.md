@@ -4,4 +4,4 @@ A simple string formatting app I came up with to practice building with React + 
 
 ## UPDATE: Jan 16, 2021
 
-I've started refactoring the project to focusing around using the useReducer hook instead of useState + useRef. I've kept the OLD/Legacy component files around, so I can compare/contrast the two different approaches.
+I've started refactoring the project to use the useReducer hook instead of useState + useRef. I've kept the OLD/Legacy component files around, so I can compare/contrast the two different approaches.
