@@ -1,0 +1,14 @@
+#root {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100vh;
+
+	.app {
+		background-color: $white;
+		box-shadow: $subtleBoxShadow;
+		padding: 2%;
+		height: 100%;
+		width: 70%;
+	}
+}

@@ -1,3 +1,123 @@
 .formatter {
-	margin: 3% 0;
+	margin: 3.5% 0;
+
+	&__row {
+		display: flex;
+		align-items: flex-start;
+	}
+
+	&__box {
+		&:first-of-type {
+			flex: 0 0 70%;
+			margin-right: 5%;
+		}
+
+		&:last-of-type {
+			flex: 1;
+		}
+	}
+
+	&__group {
+		display: flex;
+		align-items: flex-start;
+		flex-direction: column;
+
+		&:first-of-type {
+			margin-bottom: 4%;
+		}
+
+		&:last-of-type {
+		}
+	}
+
+	&__textarea-label {
+		font-size: 1.5rem;
+		font-weight: 600;
+	}
+
+	&__textarea {
+		height: 10vw;
+		width: 100%;
+		resize: none;
+		padding: 0.5rem;
+		margin-bottom: 1%;
+		font-size: 1.125rem;
+	}
+
+	&__button {
+		background-color: $glacier;
+		border: none;
+		color: $white;
+		font-size: 1rem;
+		overflow: hidden;
+		padding: 0.625rem 1.5rem;
+		position: relative;
+		transition: $transitionSmoothShort;
+
+		&::after {
+			content: '';
+			position: absolute;
+			background: lighten($honeydew, 2%);
+			display: block;
+			margin: -120% 0 0 -100%;
+			opacity: 0;
+			padding: 250% 0 0 250%;
+			transition: $transitionSmoothExtraLong;
+		}
+
+		&.disabled {
+			opacity: 0.5;
+		}
+
+		&.active {
+			@media (hover) {
+				&:hover {
+					background-color: darken($glacier, 12.5%);
+					box-shadow: $subtleBoxShadow;
+					cursor: pointer;
+					transform: translateY(-0.125rem);
+				}
+
+				&:active {
+					transform: translateY(0.25rem);
+				}
+
+				&:active::after {
+					padding: 0;
+					margin: 0;
+					opacity: 1;
+					transition: 0s;
+				}
+
+				&:focus {
+					outline: none;
+				}
+			}
+		}
+	}
+
+	&__options {
+		font-size: 1.5rem;
+		font-weight: 600;
+		line-height: 1.4;
+	}
+
+	&__list {
+	}
+
+	&__item {
+		display: flex;
+		align-items: baseline;
+
+		&:not(:last-of-type) {
+			margin-bottom: 0.25rem;
+		}
+	}
+
+	&__input {
+		margin-right: 3.5%;
+	}
+
+	&__check-label {
+	}
 }

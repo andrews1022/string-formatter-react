@@ -5,7 +5,7 @@ const Header = () => {
 		<header className='header'>
 			<h1 className='header__title'>String Formatter</h1>
 			<p className='header__tagline'>
-				Use this formatter to quickly format your text in a few different helpful formats!
+				Use this formatter to quickly format your text in a few different, helpful formats!
 			</p>
 		</header>
 	);

@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from './components/Header';
-import StringFormatter from './components/StringFormatter';
+import Formatter from './components/Formatter';
 import Footer from './components/Footer';
 import './scss/app.min.css';
 
@@ -8,7 +8,7 @@ const App = () => {
 	return (
 		<div className='app'>
 			<Header />
-			<StringFormatter />
+			<Formatter />
 			<Footer />
 		</div>
 	);
