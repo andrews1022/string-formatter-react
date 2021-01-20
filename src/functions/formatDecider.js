@@ -1,4 +1,4 @@
-import * as F from './../functions/formattingFunctions';
+import * as F from './formattingFunctions';
 
 // dynamically return the appropiate formatting function based on the id passed in
 export const formatDecider = (id) => {
