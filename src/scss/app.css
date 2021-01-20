@@ -97,8 +97,21 @@ video {
   text-align: center;
 }
 
+@media only screen and (max-width: 480px) {
+  .footer__text {
+    margin: 0 auto;
+    width: 90%;
+  }
+}
+
 .footer__icon-row {
   margin-top: 0.5%;
+}
+
+@media only screen and (max-width: 1024px) {
+  .footer__icon-row {
+    margin-top: 1.5%;
+  }
 }
 
 .footer__icon-link {
@@ -117,9 +130,27 @@ video {
   margin: 3.5% 0;
 }
 
+@media only screen and (max-width: 768px) {
+  .formatter {
+    margin-top: 5%;
+  }
+}
+
 .formatter__row {
   display: flex;
   align-items: flex-start;
+}
+
+@media only screen and (max-width: 768px) {
+  .formatter__row {
+    flex-direction: column-reverse;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .formatter__box {
+    width: 100%;
+  }
 }
 
 .formatter__box:first-of-type {
@@ -127,8 +158,20 @@ video {
   margin-right: 5%;
 }
 
+@media only screen and (max-width: 768px) {
+  .formatter__box:first-of-type {
+    margin-right: 0;
+  }
+}
+
 .formatter__box:last-of-type {
   flex: 1;
+}
+
+@media only screen and (max-width: 768px) {
+  .formatter__box:last-of-type {
+    margin-bottom: 5%;
+  }
 }
 
 .formatter__group {
@@ -153,6 +196,12 @@ video {
   padding: 0.5rem;
   margin-bottom: 1%;
   font-size: 1.125rem;
+}
+
+@media only screen and (max-width: 1024px) {
+  .formatter__textarea {
+    height: 15vw;
+  }
 }
 
 .formatter__button {
@@ -253,5 +302,12 @@ video {
   padding: 2%;
   height: 100%;
   width: 70%;
+}
+
+@media only screen and (max-width: 1024px) {
+  #root .app {
+    padding: 5% 5% 2% 5%;
+    width: 85%;
+  }
 }
 /*# sourceMappingURL=app.css.map */

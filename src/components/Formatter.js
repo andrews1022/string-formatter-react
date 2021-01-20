@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useReducer } from 'react';
 import FormatterOption from './FormatterOption';
 import { initialState, reducer } from '../reducers/formattingReducer';
-import { formatters } from './../data/formatters';
+import { formatters } from '../data/data';
 
 const Formatter = () => {
 	const [buttonIsDisabled, setButtonIsDisabled] = useState(true);

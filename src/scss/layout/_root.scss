@@ -10,5 +10,10 @@
 		padding: 2%;
 		height: 100%;
 		width: 70%;
+
+		@media #{$tabletLandscape} {
+			padding: 5% 5% 2% 5%;
+			width: 85%;
+		}
 	}
 }

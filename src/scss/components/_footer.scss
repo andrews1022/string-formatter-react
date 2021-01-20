@@ -1,11 +1,19 @@
 .footer {
 	text-align: center;
 
-	// &__text {
-	// }
+	&__text {
+		@media #{$mobileMedium} {
+			margin: 0 auto;
+			width: 90%;
+		}
+	}
 
 	&__icon-row {
 		margin-top: 0.5%;
+
+		@media #{$tabletLandscape} {
+			margin-top: 1.5%;
+		}
 	}
 
 	&__icon-link {
